@@ -1,0 +1,71 @@
+#root {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.App {
+  min-height: 100vh;
+}
+
+.app-header {
+  text-align: center;
+  padding: 32px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.app-header h1 {
+  margin: 0 0 8px 0;
+  color: white;
+  font-size: 36px;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.app-header .subtitle {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 18px;
+  font-weight: 400;
+}
+
+/* Layout spacing */
+.App > * {
+  margin-bottom: 24px;
+}
+
+.App > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  #root {
+    padding: 1rem;
+  }
+
+  .app-header {
+    padding: 24px 16px;
+  }
+
+  .app-header h1 {
+    font-size: 28px;
+  }
+
+  .app-header .subtitle {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header h1 {
+    font-size: 24px;
+  }
+
+  .app-header .subtitle {
+    font-size: 14px;
+  }
+}

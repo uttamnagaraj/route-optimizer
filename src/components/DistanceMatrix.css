@@ -1,0 +1,186 @@
+.distance-matrix {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 24px;
+  margin: 20px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.distance-matrix h2 {
+  margin-top: 0;
+  color: #2c3e50;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.empty-state {
+  background-color: white;
+  padding: 40px 20px;
+  border-radius: 6px;
+  text-align: center;
+  border: 2px dashed #dfe6e9;
+}
+
+.empty-state p {
+  color: #7f8c8d;
+  font-size: 16px;
+  margin: 0;
+}
+
+.table-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+.matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styling */
+.matrix-table thead tr {
+  background-color: #34495e;
+  color: white;
+}
+
+.matrix-table th {
+  padding: 12px 16px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+  border: 1px solid #2c3e50;
+}
+
+.corner-cell {
+  background-color: #2c3e50;
+}
+
+.header-cell {
+  background-color: #34495e;
+  min-width: 100px;
+}
+
+/* Row header styling */
+.row-header {
+  background-color: #ecf0f1;
+  color: #2c3e50;
+  font-weight: 700;
+  text-align: center;
+  border: 1px solid #bdc3c7;
+  min-width: 100px;
+}
+
+/* Data row styling with alternating colors */
+.data-row:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.data-row:nth-child(odd) {
+  background-color: white;
+}
+
+/* Cell styling */
+.matrix-table td {
+  padding: 12px 16px;
+  text-align: center;
+  border: 1px solid #dfe6e9;
+  font-size: 14px;
+  color: #2c3e50;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+/* Distance cell hover effect */
+.distance-cell:hover {
+  background-color: #3498db;
+  color: white;
+  cursor: pointer;
+  transform: scale(1.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  position: relative;
+}
+
+/* Diagonal cell styling (distance to self) */
+.diagonal-cell {
+  background-color: #95a5a6 !important;
+  color: white;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.diagonal-cell:hover {
+  background-color: #7f8c8d !important;
+  cursor: default;
+  transform: none;
+}
+
+/* Matrix info section */
+.matrix-info {
+  padding: 16px 0;
+  border-top: 2px solid #ecf0f1;
+  margin-top: 16px;
+}
+
+.matrix-info p {
+  margin: 8px 0;
+  color: #2c3e50;
+  font-size: 14px;
+}
+
+.matrix-info strong {
+  color: #34495e;
+}
+
+.info-note {
+  color: #7f8c8d;
+  font-style: italic;
+  font-size: 13px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .distance-matrix {
+    padding: 16px;
+  }
+
+  .table-container {
+    padding: 12px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .matrix-table {
+    font-size: 12px;
+  }
+
+  .matrix-table th,
+  .matrix-table td {
+    padding: 8px 10px;
+    min-width: 80px;
+  }
+
+  .matrix-info {
+    font-size: 12px;
+  }
+}
+
+/* Print styling */
+@media print {
+  .distance-matrix {
+    box-shadow: none;
+    background-color: white;
+  }
+
+  .distance-cell:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .matrix-table {
+    page-break-inside: avoid;
+  }
+}
