@@ -1,16 +1,84 @@
-# React + Vite
+# Route Optimizer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web-based route optimization engine built to replace external routing tools like NextMV. Calculates optimal delivery routes using the Nearest Neighbor algorithm and Haversine distance formula.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Distance Matrix Calculator**: Calculates distances between multiple coordinate points using the Haversine formula (great-circle distance)
+- **Route Optimization**: Finds efficient delivery routes using the Nearest Neighbor algorithm
+- **Flexible Hub Selection**: Choose any stop as the starting/ending hub
+- **Visual Route Display**: Clear visualization of the optimized route with distances for each leg
+- **Interactive UI**: Add/remove coordinates, calculate distances, and optimize routes in real-time
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 18
+- Vite
+- JavaScript (ES6+)
+- CSS3
 
-## Expanding the ESLint configuration
+## Installation & Setup
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+- Node.js (v18 or higher)
+- npm or yarn
+
+### Steps
+
+1. Clone the repository:
+```bash
+git clone https://github.com/uttamnagaraj/route-optimizer.git
+cd route-optimizer
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Run the development server:
+```bash
+npm run dev
+```
+
+4. Open your browser and navigate to `http://localhost:5173/`
+
+## How to Use
+
+1. **Add Coordinates**: Enter latitude and longitude for each delivery stop
+   - Example: Boston (42.3601, -71.0589), NYC (40.7128, -74.0060)
+2. **Calculate Distances**: Click "Calculate Distances" to see the distance matrix
+3. **Select Hub**: Choose which stop is your warehouse/starting point
+4. **Optimize Route**: Click "Optimize Route" to find the best delivery sequence
+5. **View Results**: See the optimized route with distances and total mileage
+
+## Algorithm Details
+
+### Haversine Formula
+Calculates the shortest distance between two points on Earth's surface, accounting for the planet's curvature. Returns "as the crow flies" distance in miles.
+
+### Nearest Neighbor Algorithm
+A greedy algorithm that finds a good (though not always optimal) solution to the Traveling Salesman Problem:
+- Starts at the selected hub
+- Visits the nearest unvisited stop
+- Repeats until all stops are visited
+- Returns to the hub
+
+**Time Complexity**: O(n²) where n is the number of stops
+**Space Complexity**: O(n)
+
+## Roadmap
+
+- [ ] Time window constraints for deliveries
+- [ ] Stop duration (time spent at each location)
+- [ ] Multiple vehicle support
+- [ ] Integration with Google Maps Distance Matrix API for real driving distances
+- [ ] Export routes to CSV/JSON
+
+## Built By
+
+Uttam Nagaraj - Product Manager learning to code and build AI-powered tools
+
+## License
+
+MIT License - feel free to use this for learning or commercial purposes
