@@ -4,6 +4,8 @@ import './CoordinateInput.css';
 const CoordinateInput = ({ coordinates, setCoordinates, onCalculateDistances }) => {
   const [lat, setLat] = useState('');
   const [lon, setLon] = useState('');
+  const [windowStart, setWindowStart] = useState('');
+  const [windowEnd, setWindowEnd] = useState('');
 
   const handleAddCoordinate = () => {
     const latitude = parseFloat(lat);
@@ -24,15 +26,53 @@ const CoordinateInput = ({ coordinates, setCoordinates, onCalculateDistances }) 
       return;
     }
 
+    // Validate time windows if provided
+    if (windowStart && !windowEnd) {
+      alert('Please provide both start and end times for the time window');
+      return;
+    }
+
+    if (!windowStart && windowEnd) {
+      alert('Please provide both start and end times for the time window');
+      return;
+    }
+
+    if (windowStart && windowEnd) {
+      // Validate time format (HH:MM in 24-hour format)
+      const timeRegex = /^([0-1][0-9]|2[0-3]):[0-5][0-9]$/;
+
+      if (!timeRegex.test(windowStart)) {
+        alert('Window Start must be in 24-hour format (HH:MM), e.g., 09:00 or 14:30');
+        return;
+      }
+
+      if (!timeRegex.test(windowEnd)) {
+        alert('Window End must be in 24-hour format (HH:MM), e.g., 09:00 or 14:30');
+        return;
+      }
+
+      // Check if windowEnd is after windowStart
+      if (windowEnd <= windowStart) {
+        alert('Window End time must be after Window Start time');
+        return;
+      }
+    }
+
     const newCoordinate = {
       id: Date.now(),
       lat: latitude,
-      lon: longitude
+      lon: longitude,
+      ...(windowStart && windowEnd && {
+        windowStart: windowStart,
+        windowEnd: windowEnd
+      })
     };
 
     setCoordinates([...coordinates, newCoordinate]);
     setLat('');
     setLon('');
+    setWindowStart('');
+    setWindowEnd('');
   };
 
   const handleDeleteCoordinate = (id) => {
@@ -80,6 +120,28 @@ const CoordinateInput = ({ coordinates, setCoordinates, onCalculateDistances }) 
           </label>
         </div>
 
+        <div className="input-group time-window-group">
+          <label>
+            Window Start (Optional):
+            <input
+              type="time"
+              value={windowStart}
+              onChange={(e) => setWindowStart(e.target.value)}
+              placeholder="09:00"
+            />
+          </label>
+
+          <label>
+            Window End (Optional):
+            <input
+              type="time"
+              value={windowEnd}
+              onChange={(e) => setWindowEnd(e.target.value)}
+              placeholder="11:00"
+            />
+          </label>
+        </div>
+
         <button
           className="add-button"
           onClick={handleAddCoordinate}
@@ -96,6 +158,11 @@ const CoordinateInput = ({ coordinates, setCoordinates, onCalculateDistances }) 
               <li key={coord.id} className="coordinate-item">
                 <span className="coordinate-info">
                   Lat: {coord.lat.toFixed(6)}, Lon: {coord.lon.toFixed(6)}
+                  {coord.windowStart && coord.windowEnd && (
+                    <span className="time-window-display">
+                      {' | Window: '}{coord.windowStart}-{coord.windowEnd}
+                    </span>
+                  )}
                 </span>
                 <button
                   className="delete-button"
