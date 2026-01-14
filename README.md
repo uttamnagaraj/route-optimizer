@@ -77,8 +77,4 @@ A greedy algorithm that finds a good (though not always optimal) solution to the
 
 ## Built By
 
-Uttam Nagaraj - Product Manager learning to code and build AI-powered tools
-
-## License
-
-MIT License - feel free to use this for learning or commercial purposes
+Uttam Nagaraj
